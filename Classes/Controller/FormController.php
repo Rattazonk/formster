@@ -28,6 +28,11 @@ namespace Rattazonk\Formster\Controller;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 class FormController extends ActionController {
+	/**
+	 * @var array
+	 */
+	protected $initializers = [];
+	
 	public function showAction() {
 		$this->callInitializers();
 	}
@@ -40,6 +45,13 @@ class FormController extends ActionController {
 	}
 
 	protected function initInitializers() {
+		if( !$this->settings['initializers'] ){
+			$this->settings['initializers'] = [];
+		}
+
+		if( !is_array($this->settings['initializers']) ){
+			throw new \InvalidArgumentException('The initializers configuration of Formster must be an array or null.', 1440710160);
+		}
 		foreach($this->settings['initializers'] as $initializer) {
 			$this->initializers[] = $this->objectManager->get($initializer);
 		}

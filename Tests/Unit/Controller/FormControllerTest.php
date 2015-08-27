@@ -54,6 +54,34 @@ class FormControllerTest extends UnitTestCase {
 
 	/**
 	 * @test
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function initInitializersThrowsExceptionWhenConfigurationIsNotArray() {
+		$this->subject->_set('settings', ['initializers' => 'aString']);
+
+		$this->subject->showAction();
+	}
+
+	/**
+	 * @test
+	 */
+	public function initInitializersNotThrowsAnExceptionWhenConfigurationIsNull() {
+		$this->subject->_set('settings', ['initializers' => NULL]);
+
+		$this->subject->showAction();
+	}
+
+	/**
+	 * @test
+	 */
+	public function initInitializersNotThrowsAnExceptionWhenConfigurationIsNotSet() {
+		$this->subject->_set('settings', []);
+
+		$this->subject->showAction();
+	}
+
+	/**
+	 * @test
 	 * @expectedException \Rattazonk\Formster\Tests\Exceptions\CalledException
 	 */
 	public function callInitializersCallsConfiguredInitializers() {
@@ -63,4 +91,5 @@ class FormControllerTest extends UnitTestCase {
 
 		$this->subject->showAction();
 	}
+
 }
