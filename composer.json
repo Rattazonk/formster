@@ -1,0 +1,12 @@
+{
+    "name": "rattazonk/formster",
+    "type": "typo3-cms-extension",
+    "description": "Form extension for TYPO3",
+    "homepage": "https://github.com/Rattazonk/formster",
+    "license": ["GPL-2.0+"],
+    "keywords": ["TYPO3 CMS", "formster"],
+    "support": {
+        "issues": "https://github.com/Rattazonk/formster/issues"
+    },
+		"require": {}
+}
